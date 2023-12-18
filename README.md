@@ -1,7 +1,9 @@
 
 # Access Control with Sanitization using ESP32CAM and Arduino Uno
 
-This academic project integrates an access control system with a sanitization module, designed during the COVID-19 period. The project consists of several interconnected modules, each serving distinct functionalities:
+A project I worked on to implement an access control system that also included a way to sanitize
+peoples hands as they went into a facility and also check their temperature with builtin camera
+survillence
 
 ## Access Control Module
 
@@ -22,14 +24,11 @@ Additionally, this module manages the user interface and control mechanisms, com
 ### Camera and HTTP Handling
 The Camera module encompasses functionalities related to camera integration and HTTP request management. Although specific details are limited, the code segments suggest:
 
-- **Camera Operations:** Code snippets like `app_httpd.cpp`, `Camera.ino`, and `camera_pins.h` imply camera-related operations and setup.
-- **HTTP Communication:** This module potentially handles HTTP requests, possibly for image capture or transmission, enhancing security measures.
+- **Camera Operations:** The camera uses an http server to stream image frames for taking pictures when a person is detected near the  sanitization module
+- **HTTP Communication:** The ESP32CAM uses HTTP to receive triggers to capture an image and also control the flash light. It sort of acts like an API for the camera
 
 ## Sanitization Module
 
-### Hygiene Maintenance
-The Sanitization Module focuses on maintaining hygiene within the controlled environment. The code segments indicate the inclusion of:
-
 - **Sanitizer Level Monitoring:** Continuous monitoring of sanitizer levels through `checkSanitizerLevel()` function and associated sensor readings.
-- **Temperature Monitoring:** Utilizes an infrared sensor (`Adafruit_MLX90614`) to gauge body temperature and trigger sanitation protocols based on predefined temperature limits.
+- **Temperature Monitoring:** Utilizes an infrared sensor (`Adafruit_MLX90614`) to gauge body temperature and trigger sanitation protocols (in this case trigger a buzzer) based on predefined temperature limits.
 - **Proximity Sensing:** Utilizes ultrasonic sensors (`initSonar()`, `getDistance()`) to detect proximity and initiate sanitation measures based on predefined distance criteria.
